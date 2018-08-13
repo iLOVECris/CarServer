@@ -1,0 +1,1 @@
+game_server.exe ../../apps/lua/scritps/ system/main.lua

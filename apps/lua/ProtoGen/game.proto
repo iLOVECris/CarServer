@@ -1,0 +1,153 @@
+syntax = "proto2"; 
+enum Stype
+{
+	INVALID_STYPE= 0;
+	Auth = 1;
+	TalkRoom = 2;
+	System = 3;
+	Logic = 4;
+}
+enum Cmd {
+	INVALID_CMD = 0;
+	eLoginReq = 1;
+	eRespose = 2;
+	eSendMsg = 3;
+	eSendEmoji = 4;
+	eRecvMsg = 5;
+	eRecvEmoji = 6;
+	eExitDisconnect = 7;
+	eGuestLogin = 8;
+	eGuestLoginRes = 9;
+	eDropByOther = 10;
+	eModifyName = 11;
+	eModifyPlayerIcon = 12;
+	eAccountUpgradeReq = 13;
+	eAccountUpgradeRes = 14;
+	eUserLoginReq = 15;
+	eUserLoginRes = 16;
+	eUserLoginOutReq = 17;
+	eUserLoginOutRes = 18;
+	eGetPlayerDataReq = 19;
+	eGetPlayerDataRes = 20;
+	eGetLoginBonusReq = 21;//点击签到请求
+	eGetLoginBonusRes = 22;//签到请求返回
+}
+
+message LoginReq {  
+  required string name = 1;  
+  required int32 age = 2;  
+  required string email = 3;  
+  required int32 int_set = 4;
+}
+
+message GuestLogin
+{
+	required string u_key = 1;
+}
+message GuestLoginInfo
+{
+	required int32 uid = 1;
+	required string name = 2;
+	required int32 sex = 3;
+	required int32 face = 4;
+	required int32 is_guest = 5;
+	required int32 status = 6;
+}
+message GuestLoginRes
+{
+	required int32 errcode = 1;
+	optional GuestLoginInfo info = 2;
+}
+message Respose
+{
+  required int32 status = 1;	
+}
+message SendMsg
+{
+	required string msg = 1;
+}
+
+message SendEmoji
+{
+	required int32 id = 1;
+}
+
+message RecvMsg
+{
+	required string msg = 1;
+}
+message ModifyName
+{
+	required string name = 1;
+}
+message ModifyPlayerIcon
+{
+	required int32 playericon = 1;
+}
+message RecvEmoji
+{
+	required int32 id = 1;
+}
+message AccountUpgradeReq
+{
+	required string phonenumber = 1;
+	required string password = 2;
+}
+message AccountUpgradeRes
+{
+	required int32 status = 1;
+	optional string playeraccount = 2;
+	optional string password = 3;
+}
+message UserLoginReq
+{
+	required string playeraccount = 1;
+	required string password = 2;
+}
+message UserLoginRes
+{
+	required int32 errcode = 1;
+	optional GuestLoginInfo info = 2;
+}
+
+message UserLoginOutRes
+{
+	required int32 status = 1;
+}
+
+message PlayerData
+{
+	required int32 money = 1;
+	required int32 grade = 2;
+	required int32 exp = 3;
+	required int32 vip = 4;
+}
+message LoginBonusData
+{
+	 required int32 id = 1;//道具id
+	 required int32 num = 2;//奖励数量
+	 required int32 status = 3;//状态 0待签到 1可签到 2可补签 3已领取
+	 required int32 day = 4;//当前周几
+}
+message GetPlayerDataRes
+{
+	required int32 errcode = 1;
+	optional PlayerData playerdata = 2;//玩家数据
+	repeated LoginBonusData bonusdata = 3;//每日登录奖励列表
+}
+
+message GetLoginBonusReq
+{
+	required int32  signtype = 1;//签到类型 1:签到 2:补签
+	required int32 day = 2; //哪一天
+}
+
+message GetLoginBonusRes
+{
+	required int32 errcode = 1;
+	 optional int32 id = 2;//道具id
+	 optional int32 num = 3;//奖励数量
+	 repeated LoginBonusData bonusdata = 4;//每日登录奖励列表
+}
+
+

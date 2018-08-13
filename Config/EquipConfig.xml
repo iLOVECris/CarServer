@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Config>
+    <item id="111" equipname="金币" Type="1"/>
+    <item id="112" equipname="金币" Type="1" />
+    <item id="113" equipname="钻石" Type="2" />
+    <item id="114" equipname="草药" Type="3"/>
+    <item id="115" equipname="贝壳" Type="3"/>
+    <item id="116" equipname="钥匙" Type="4"/>
+    <item id="117" equipname="宝箱" Type="4"/>
+</Config>
