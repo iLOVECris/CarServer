@@ -24,6 +24,8 @@
 *.la
 *.a
 *.log
+*.db
+*.suo
 logger
 Debug
 
